@@ -102,9 +102,63 @@ where ψ expands the input value x to a vector ψ(x) and w is the parameter vect
   * **Linear Model with Polynomial Degree 1** 
     * The polynomial basis expansion function with degree 1 has the form ψ1_poly(x) = [1, x]T 
     * This is the simple linear model which cannot capture the quadratic function
-    
+    <p align="center">
+    <img width="234" alt="Screen Shot 2023-02-02 at 12 12 45 AM" src="https://user-images.githubusercontent.com/40763359/216188319-d0227ffd-36ed-4352-93b5-5f27db4ab6ed.png"> </p>
 
   * **Linear Model with Polynomial Degree 1** 
     * To capture the quadratic function better, we need features with higher degrees, such as x2 
     * The polynomial basis expansion function with degree 2 has the form ψ2_poly(x) = [1, x,x2]T
+    <p align="center">
+   <img width="292" alt="Screen Shot 2023-02-02 at 12 12 53 AM" src="https://user-images.githubusercontent.com/40763359/216188358-0182e6fd-2dd5-49cb-86fe-4002484696f6.png"> </p>
+   <p align="center">
+   <img width="349" alt="Screen Shot 2023-02-02 at 12 14 01 AM" src="https://user-images.githubusercontent.com/40763359/216188553-2c391cbe-72a7-4356-92ad-96ff283c7146.png"> </p>
    
+  * **Linear Model with Polynomial higher degree** 
+    * In general, it is possible capture more complex functions by adding x with arbitrarily higher degree to the data vector
+    * The models try to fit every single training data point, hence the models perform well on the training data but do not generalise well to unseen data
+    * A solution to resolve the overfitting problem is to train the models with more training data
+    <p align="center">
+    <img width="704" alt="Screen Shot 2023-02-02 at 12 16 29 AM" src="https://user-images.githubusercontent.com/40763359/216189358-0f567dd7-06b8-4e7a-9946-8f05b198ec85.png">
+    </p>
+### Polynomial Basis Expansion in Higher Dimensions
+* For a data vector with multiple feature values, the polynomial basis expansion function ψd_poly generates the a feature vector that consists of all polynomial combinations of the features with degree less than or equal to the degree d.
+* For example, for a input data with two dimensions x = [x1, x2]T , the polynomial basis expansion function with degree 2 expands
+the data to ψ2_poly(x) = [1, x1, x2, x21, x22, x1x2]T
+* By applying the polynomial basis expansion of degree d to data in D dimensions, we obtain a number of features in the order of O(Dd).
+* Applying polynomial basis expansion on high-dimensional data can easily cause the so called curse of dimensionality.
+* In this very high-dimensional space, the Euclidean distances between the data points are similar, which means they look similar
+to the model. In this case, the model cannot distinguish them, so cannot fit well to the data. This results to the underfitting problem.
+* To solve it, we might need exponentially large (in the dimension) dataset, or we need to reduce the number of the features.
+
+
+# Regularisation 
+* As the number of features a model takes into account increases, the training error of the model decreases but the test error increases. 
+* This means that models that take more features into account tend to overfit the training data.
+* This happens because the models use the parameters of the irrelevant features to learn the noise in the data. 
+* One way to select relevant features is regularisation
+
+### Ridge Regression
+* The aim of ridge regression is to penalise the parameters (or weights) of those features of the training data set that are less relevant for the output signal. 
+* Since we do not know a priori which features are less relevant, we put a penalty term on all parameters, hoping that the less relevant ones are penalised more.
+* The ridge regression objective function is defined as:
+<img width="335" alt="Screen Shot 2023-02-02 at 12 32 01 AM" src="https://user-images.githubusercontent.com/40763359/216191394-fbfad2cd-4805-46b9-b59b-041457352c7f.png">
+
+* It includes the hyperparameter lambda that allows to weight the penalty term. It also includes the squared ¸2 norm of the parameter vector w. 
+* The penalty term is also referred to as l2-regularisation or weightdecay.
+* The idea is that in order to minimise the objective function for ridge regression, we need to minimise both the least-squares part we had before and the additional penalty term, which the sum of the squares of the parameters, weighted by lambda. This leads to lower parameter values. 
+* The optimal values of the parameters depend heavily on the value of lambda. The ridge regression objective function does not penalise the bias w0.
+* to derive the optimal w that minimises the following ridge regression objective function:
+<img width="397" alt="Screen Shot 2023-02-02 at 12 39 01 AM" src="https://user-images.githubusercontent.com/40763359/216192442-062f4a62-0d91-4f1d-9cd3-3cb71650ec80.png">
+
+* We consider the gradient of the function with respect to w:
+<img width="320" alt="Screen Shot 2023-02-02 at 12 39 26 AM" src="https://user-images.githubusercontent.com/40763359/216192541-6cd3c3dc-6f69-4f37-89a1-b2dde2f5a8a4.png">
+<img width="241" alt="Screen Shot 2023-02-02 at 12 39 41 AM" src="https://user-images.githubusercontent.com/40763359/216192542-d9606559-52ee-4dd0-be5d-9f7e08ebd4d5.png">
+
+### LASSO: Least Absolute Shrinkage and Selection Operator
+* The penalty term uses the the absolute value function and is therefore known as l1 regularisation. 
+* LASSO is about shrinkage in the sense that the parameter values get smaller. 
+* It is a selection operator in the sense that it forces some of the parameters to be zero. 
+* The LASSO objective is defined as:
+<img width="328" alt="Screen Shot 2023-02-02 at 12 44 17 AM" src="https://user-images.githubusercontent.com/40763359/216193302-8f4be742-ee4c-4b47-a121-4625c9950064.png">
+
+
