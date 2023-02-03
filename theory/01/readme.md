@@ -162,3 +162,38 @@ to the model. In this case, the model cannot distinguish them, so cannot fit wel
 <img width="328" alt="Screen Shot 2023-02-02 at 12 44 17 AM" src="https://user-images.githubusercontent.com/40763359/216193302-8f4be742-ee4c-4b47-a121-4625c9950064.png">
 
 
+# Validation 
+### What are hyperparameters 
+* the Lagrangian multiplier for regularisation
+* the width for the RBF kernel function
+* the degree d of the polynomial basis expansion function
+### Validation process
+* The values of hyperparameters of a model can be chosen using the validation process.
+* For validation, we divide the data into three parts: training data, validation data, and testing data.
+ * The test data is set apart and only used at the end to evaluate the goodness of the model.
+ * We then train a model with specific values for the hyperparameters using the training set and evaluate it on the validation set.
+ * We pick the values for the hyperparameters that minimise the validation error.
+ * Then, we put together the training and the validation set and learn the model with the chosen values for the hyperparameters over the training and validation dataset.
+ ### Validation example with Lasso regularization
+ * Possible choices for lambda and their respective training and validation errors :
+ <img width="400" alt="Screen Shot 2023-02-03 at 4 54 57 PM" src="https://user-images.githubusercontent.com/40763359/216648114-59e88052-0181-4459-9595-51f478c81b4f.png">
+ <img width="400" alt="Screen Shot 2023-02-03 at 4 57 39 PM" src="https://user-images.githubusercontent.com/40763359/216648734-e76eac53-af32-40b8-b630-30d4cde22cde.png">
+
+ * For very small values of lambda, the training error is very small. Indeed, the model overfits the training data – this can also be seen from the relatively much larger validation error.
+ * As we increase lambda, the training error increases but then also the validation error decreases to the point where the two errors become very close. A sweet spot is between 10^-2 and 10^-1.
+ * Ideally, we want to pick the hyperparameter lambda at the bottom of the validation error curve, where we achieve the best model performance on the validation set.
+ * Further increasing lambda gives much more importance to the penalty term and therefore many more parameters are forced to 0 (or close to 0). This leads to underfitting, where the model makes poor predictions on both the training and validation data.
+ 
+ ### Grid Search and K-Fold Cross Validation
+ * Grid Search
+   * Grid Search iterates over all possible combinations of hyperparameter values.
+   * For each combination of hyper-parameter values, we perform cross-validation. 
+   * Finally, we pick the combination with the lowest validation error.
+ * K-fold cross validation
+   * Given a dataset, we divide it into K disjunctive parts or folds.
+   * For each combination of hyper-parameter values, we train K models as follows. 
+   * We use K-1 folds for training and the remaining 1 fold for validation. 
+   * We repeat this process K times so that every fold is used as the validation set. 
+   * The validation error is then the average over the K validation runs.
+   * When K is the number of data points, so each data point gets its turn as the validation data, the method is known as leave one out cross-validation (LOOCV).
+
