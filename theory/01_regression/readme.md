@@ -1,4 +1,8 @@
 ## 📁 01. wine quality prediction 
+* Implement linear regression using the least squares method
+* Use learning curves plot to understand whether the linear model is overfitting or underfitting
+* Extend model with polynomial basis expansions and regularizations (Ridge and Lasso) using Sklearn
+* Use k-fold cross validation to obtain the optimal hyper-parameters for the models
 ## 📁 02. car price prediction 
 * Prepare data and Exploratory data analysis (EDA)
 * Define baseline model 
