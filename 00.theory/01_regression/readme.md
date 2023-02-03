@@ -1,4 +1,8 @@
 ## 📁 01. wine quality prediction 
+* Implement linear regression using the least squares method
+* Use learning curves plot to understand whether the linear model is overfitting or underfitting
+* Extend model with polynomial basis expansions and regularizations (Ridge and Lasso) using Sklearn
+* Use k-fold cross validation to obtain the optimal hyper-parameters for the models
 ## 📁 02. car price prediction 
 * Prepare data and Exploratory data analysis (EDA)
 * Define baseline model 
@@ -9,8 +13,15 @@
 * Using the best model
 
 ## Frequently used concept 
-### encoding categorical data
+#### EDA 
+* check data distribution
+* deal with missing values
+#### Encoding categorical data
 Categorical variables are typically strings, and pandas identifies them as object types. These variables need to be converted to a numerical form because ML models can interpret only numerical features. It is possible to incorporate certain categories from a feature, not necessarily all of them. This transformation from categorical to numerical variables is known as One-Hot encoding.
+#### Normalization
+#### Regularization
+#### basis expansion for non-linearity
+#### K-fold cross validation
 
 ## 🪄 Side note 
 ### ✨ Useful pandas function for Data preparation 
