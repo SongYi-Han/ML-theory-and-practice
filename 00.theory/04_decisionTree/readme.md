@@ -1,4 +1,13 @@
-# Scoring credit status with tree models 
+# Decision Tree
+* decision tree learns by reducing the impurity of the dataset
+* impurity can be computed by Gini index or Entropy 
+* decision tree algorithm : code 
+
+# Random Forest
+* emsemble methods that uses several decision tree
+* several sub trees can be made with randomly choosen features 
+
+## 📁 Scoring credit status with tree models 
 Dataset: https://github.com/gastonstat/CreditScoring
 
 ### 1. Data load 
