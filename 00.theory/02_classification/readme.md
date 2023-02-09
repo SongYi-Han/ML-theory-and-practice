@@ -1,6 +1,11 @@
-# 01. LR vs NB
+# Logistic Regression (Binary classification)
+* Logistic regression is a model to predict probability of the occurence of events
+* Core idea of logistic regression is same as linear regression( learning w, which satisfies wx+w0), but returning values between 0 and 1 using sigmoid function. So we need to find weight using gradient descent methods
+* In general, threshold is 0.5 but it can be tunned based on the problem
+* feature selection is possible by interpreting weights of each feature
+## 📁 01. LR vs NB
 
-# 02. Churn prediction project
+## 📁 02. Churn prediction project
 
 The project aims to identify customers that are likely to churn or stoping to use a service. Each customer has a score associated with the probability of churning. Considering this data, the company would send an email with discounts or other promotions to avoid churning. 
 
